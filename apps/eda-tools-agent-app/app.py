@@ -14,7 +14,7 @@ from ai_data_science_team.ds_agents import EDAToolsAgent
 from ai_data_science_team.utils.plotly import plotly_from_dict
 
 # OPTIONAL: If you need the same illusions of model selection as the original app:
-MODEL_LIST = ["gpt-4o-mini", "gpt-4o"]
+MODEL_LIST = ["gpt-4o-mini", "gpt-4o", "o3-mini"]
 
 
 def main():
@@ -82,7 +82,7 @@ def main():
             st.error("Please enter your OpenAI API key in the sidebar to continue.")
             st.stop()
             
-        llm = ChatOpenAI(model=model_option, api_key=api_key)
+        llm = ChatOpenAI(model=model_option, api_key=api_key, reasoning_effort="high")
         st.session_state["eda_agent"] = EDAToolsAgent(model=llm)
 
     eda_agent = st.session_state["eda_agent"]
